@@ -1,6 +1,6 @@
 <template>
 	<div class="catalogCategory">
-		<h2>{{ category.name }}</h2>
+		<h2 class="catalogCategory__name">{{ category.name }}</h2>
 
 		<CatalogElement
 			v-for="product of category.products"
@@ -9,6 +9,10 @@
 		/>
 	</div>
 </template>
+
+<style lang="scss">
+@import "./CatalogCategory";
+</style>
 
 <script>
 import CatalogElement from "../CatalogElement/CatalogElement.vue";

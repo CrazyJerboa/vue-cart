@@ -1,7 +1,7 @@
 <template>
 	<p v-if="!isDataLoaded">Loading...</p>
 
-	<div v-else class="products">
+	<div v-else class="catalogList">
 		<CatalogCategory
 			v-for="category of products"
 			:key="category.id"
@@ -9,6 +9,10 @@
 		/>
 	</div>
 </template>
+
+<style lang="scss">
+@import "./home";
+</style>
 
 <script>
 import {api} from "../../../api";

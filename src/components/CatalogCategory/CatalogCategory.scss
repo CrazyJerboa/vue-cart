@@ -1,3 +1,12 @@
-.catalogCategory {
+@import "src/assets/variables";
 
+.catalogCategory {
+	border-radius: 10px;
+	border: 1px solid $border-gray;
+	padding: 15px;
+	width: 100%;
+
+	&__name {
+		margin-bottom: 15px;
+	}
 }
