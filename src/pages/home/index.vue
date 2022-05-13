@@ -16,11 +16,19 @@ export default {
 
 	mounted() {
 		this.getNames();
+		this.getProducts();
 	},
 
 	methods: {
 		getNames() {
-			api.parseNames()
+			api.getNames()
+				.then(response => {
+					console.log(response)
+				})
+		},
+
+		getProducts() {
+			api.getProducts()
 				.then(response => {
 					console.log(response)
 				})
