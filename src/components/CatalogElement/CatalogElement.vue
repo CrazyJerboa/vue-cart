@@ -8,7 +8,10 @@
 				<p class="catalogElement__price">{{ price }} руб.</p>
 			</div>
 
-			<button>В корзину</button>
+			<button
+				@click="addToCart(product)"
+				:disabled="inCart"
+			>{{ inCart ? 'В корзине' : 'В корзину' }}</button>
 		</div>
 	</div>
 </template>
@@ -19,6 +22,8 @@
 
 <script>
 import {toRoubleHelper} from "../../helpers/toRouble.helper";
+import {mapActions, mapStores} from "pinia/dist/pinia";
+import {useCartStore} from "../../../store/useCartStore";
 
 export default {
 	name: 'CatalogElement',
@@ -28,8 +33,25 @@ export default {
 	},
 
 	computed: {
+		...mapStores(useCartStore, ['cart']),
+
 		price() {
 			return toRoubleHelper(this.product.price);
+		},
+
+		inCart() {
+			return !!this.cartStore.cart.find(p => p.id === this.product.id);
+		}
+	},
+
+	methods: {
+		...mapActions(useCartStore, ['addProductToCart']),
+
+		addToCart(product) {
+			this.addProductToCart({
+				...product,
+				inCartQuantity: 1
+			});
 		}
 	}
 }

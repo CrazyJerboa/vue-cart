@@ -48,6 +48,13 @@ button,
 		background: darken($background-primary, 10%);
 		transition: 0.1s;
 	}
+
+	&[disabled] {
+		top: 0;
+		background: $background-gray;
+		color: $text-gray-light;
+		cursor: default;
+	}
 }
 
 a {
@@ -78,6 +85,10 @@ a {
 		display: flex;
 		align-items: center;
 		height: inherit;
+	}
+
+	.cartOuter {
+		margin-left: auto;
 	}
 }
 

@@ -1,13 +1,13 @@
 <template>
 	<header class="header">
 		<div class="container">
-			<MainMenu/>
+			<Cart />
 		</div>
 	</header>
 
 	<main class="wrapper">
 		<div class="container">
-			<RouterView/>
+			<MainPage />
 		</div>
 	</main>
 </template>
@@ -17,13 +17,13 @@
 </style>
 
 <script>
-import {RouterView} from 'vue-router';
-import MainMenu from "./components/MainMenu/MainMenu.vue";
+import Cart from "./components/Cart/Cart.vue";
+import MainPage from "./pages/home/index.vue";
 
 export default {
 	components: {
-		RouterView,
-		MainMenu
+		MainPage,
+		Cart
 	}
 }
 </script>

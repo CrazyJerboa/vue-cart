@@ -1,0 +1,138 @@
+@import "src/assets/variables";
+
+.cart {
+	position: absolute;
+	top: 100%;
+	z-index: 20;
+	right: 0;
+	border-radius: 10px;
+	background: $background-white;
+	box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+	//visibility: hidden;
+	//opacity: 0;
+	margin-top: 0;
+	padding: 15px;
+	width: calc(100vw - 45px);
+	max-width: 450px;
+	transition: $transition-long;
+
+	&::before {
+		content: '';
+		display: block;
+		position: absolute;
+		top: -50px;
+		right: 0;
+		width: 100%;
+		height: 50px;
+	}
+
+	&__title {
+		margin-bottom: 15px;
+	}
+
+	&__summary {
+		font-size: 20px;
+		font-weight: 700;
+	}
+
+	&Outer {
+		position: relative;
+
+		&__btn {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 50%;
+			width: 40px;
+			height: 40px;
+			text-align: center;
+			cursor: pointer;
+			transition: $transition-default;
+
+			.cartIcon {
+				width: 15px;
+				height: auto;
+			}
+
+			.quantity {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				border: 2px solid $border-gray;
+				border-radius: 50%;
+				background: $background-primary;
+				width: 18px;
+				height: 18px;
+				font-size: 10px;
+				font-weight: 700;
+				color: $text-white;
+			}
+		}
+
+		&:hover {
+			.cartOuter__btn {
+				background: $background-primary;
+
+				.cartIcon {
+					fill: $text-white;
+				}
+
+				.quantity {
+					background: $background-white;
+					color: $text-main;
+				}
+			}
+
+			.cart {
+				visibility: visible;
+				opacity: 1;
+				margin-top: 10px;
+			}
+		}
+	}
+
+	&Element {
+		display: grid;
+		grid-template-columns: auto 120px 35px;
+		gap: 10px;
+		align-items: center;
+		border-bottom: 1px solid $border-gray;
+		margin-bottom: 15px;
+		padding-bottom: 15px;
+
+		&__name {
+			font-weight: 700;
+		}
+
+		&__quantity {
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+		}
+
+		button {
+			border-radius: 50%;
+			background: transparent;
+			width: 35px;
+			height: 35px;
+			min-width: 35px;
+			font-size: 20px;
+			color: $text-primary;
+
+			&.cartElement__delete {
+				color: $text-danger;
+
+				&:hover {
+					background: $background-danger;
+				}
+			}
+
+			&:hover {
+				color: $text-white;
+			}
+		}
+	}
+}
