@@ -13,21 +13,11 @@
 			<h2 class="cart__title">Корзина</h2>
 
 			<div class="cart__list">
-				<div
+				<CartElement
 					v-for="product of cartStore.cart"
-					class="cartElement"
 					:key="product.id"
-				>
-					<p class="cartElement__name">{{ product.name }} <br/> <span>{{ getPriceInRoubles(product.price * product.inCartQuantity) }} руб.</span></p>
-
-					<div class="cartElement__quantity">
-						<button>&minus;	</button>
-						<span>{{ product.inCartQuantity }}</span>
-						<button>&plus;</button>
-					</div>
-
-					<button class="cartElement__delete">&times;</button>
-				</div>
+					:product="product"
+				/>
 			</div>
 
 			<div class="cart__summary">
@@ -44,13 +34,15 @@
 <script>
 import {mapActions, mapStores} from "pinia/dist/pinia";
 import {useCartStore} from "../../../store/useCartStore";
-import CartIcon from "../icons/CartIcon.vue";
 import {toRoubleHelper} from "../../helpers/toRouble.helper";
+import CartIcon from "../icons/CartIcon.vue";
+import CartElement from "../CartElement/CartElement.vue";
 
 export default {
 	name: 'Cart',
 
 	components: {
+		CartElement,
 		CartIcon
 	},
 
@@ -83,11 +75,7 @@ export default {
 	},
 
 	methods: {
-		...mapActions(useCartStore, ['deleteProductFromCart']),
-
-		getPriceInRoubles(price) {
-			return toRoubleHelper(price);
-		}
+		...mapActions(useCartStore, ['deleteProductFromCart'])
 	},
 }
 </script>

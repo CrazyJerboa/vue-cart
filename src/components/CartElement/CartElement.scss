@@ -1,0 +1,43 @@
+@import "src/assets/variables";
+
+.cartElement {
+	display: grid;
+	grid-template-columns: auto 120px 35px;
+	gap: 10px;
+	align-items: center;
+	border-bottom: 1px solid $border-gray;
+	margin-bottom: 15px;
+	padding-bottom: 15px;
+
+	&__name {
+		font-weight: 700;
+	}
+
+	&__quantity {
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+	}
+
+	button {
+		border-radius: 50%;
+		background: transparent;
+		width: 35px;
+		height: 35px;
+		min-width: 35px;
+		font-size: 20px;
+		color: $text-primary;
+
+		&.cartElement__delete {
+			color: $text-danger;
+
+			&:hover {
+				background: $background-danger;
+			}
+		}
+
+		&:hover {
+			color: $text-white;
+		}
+	}
+}
