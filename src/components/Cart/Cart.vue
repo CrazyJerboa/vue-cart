@@ -21,7 +21,9 @@
 			</div>
 
 			<div class="cart__summary">
-				Итого: {{ cartSumm }} руб.
+				<span>Итого: {{ cartSumm }} руб.</span>
+
+				<button class="cart__clearBtn" @click="clearCart">Очистить корзину</button>
 			</div>
 		</div>
 	</div>
@@ -33,7 +35,7 @@
 
 <script>
 import {mapActions, mapStores} from "pinia/dist/pinia";
-import {useCartStore} from "../../../store/useCartStore";
+import {useCartStore} from "../../../store/CartStore";
 import {toRoubleHelper} from "../../helpers/toRouble.helper";
 import CartIcon from "../icons/CartIcon.vue";
 import CartElement from "../CartElement/CartElement.vue";
@@ -75,7 +77,11 @@ export default {
 	},
 
 	methods: {
-		...mapActions(useCartStore, ['deleteProductFromCart'])
+		...mapActions(useCartStore, ['clearCart']),
+
+		clearCart() {
+			this.cartStore.clearCart();
+		}
 	},
 }
 </script>

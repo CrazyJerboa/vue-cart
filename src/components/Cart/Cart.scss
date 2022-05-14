@@ -8,8 +8,8 @@
 	border-radius: 10px;
 	background: $background-white;
 	box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
-	//visibility: hidden;
-	//opacity: 0;
+	visibility: hidden;
+	opacity: 0;
 	margin-top: 0;
 	padding: 15px;
 	width: calc(100vw - 45px);
@@ -31,8 +31,16 @@
 	}
 
 	&__summary {
-		font-size: 20px;
-		font-weight: 700;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 15px;
+
+		> span {
+			margin-right: auto;
+			font-size: 20px;
+			font-weight: 700;
+		}
 	}
 
 	&Outer {

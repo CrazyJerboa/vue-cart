@@ -28,6 +28,11 @@
 		font-size: 20px;
 		color: $text-primary;
 
+		&[disabled] {
+			background: transparent;
+			color: $text-gray-light !important;
+		}
+
 		&.cartElement__delete {
 			color: $text-danger;
 

@@ -23,7 +23,7 @@
 <script>
 import {toRoubleHelper} from "../../helpers/toRouble.helper";
 import {mapActions, mapStores} from "pinia/dist/pinia";
-import {useCartStore} from "../../../store/useCartStore";
+import {useCartStore} from "../../../store/CartStore";
 
 export default {
 	name: 'CatalogElement',
