@@ -1,6 +1,13 @@
 <template>
 	<div class="cartElement">
-		<p class="cartElement__name">{{ product.name }} <br/> <span>{{ getPriceInRoubles(product.price * product.inCartQuantity) }} руб.</span></p>
+		<p class="cartElement__name">
+			{{ product.name }} <br/>
+			<span>{{ getPriceInRoubles(product.price) }} руб. / шт.</span> <br/>
+			<span
+				v-if="product.quantity <= limitedQuantity"
+				class="cartElement__nameLimited"
+			>Количество ограничено</span>
+		</p>
 
 		<div class="cartElement__quantity">
 			<button
@@ -37,7 +44,8 @@ export default {
 
 	data() {
 		return {
-			currentQuantity: 0
+			currentQuantity: 0,
+			limitedQuantity: 3
 		}
 	},
 

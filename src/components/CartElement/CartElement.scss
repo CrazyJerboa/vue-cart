@@ -11,6 +11,12 @@
 
 	&__name {
 		font-weight: 700;
+
+		&Limited {
+			font-size: 13px;
+			font-weight: 400;
+			color: $text-danger;
+		}
 	}
 
 	&__quantity {
@@ -43,6 +49,28 @@
 
 		&:hover {
 			color: $text-white;
+		}
+	}
+}
+
+@media (max-width: 399px) {
+	.cartElement {
+		display: flex;
+		flex-wrap: wrap;
+
+		&__name {
+			order: 1;
+			width: calc(100% - 50px);
+		}
+
+		&__quantity {
+			order: 3;
+			width: 100%;
+		}
+
+		&__delete {
+			order: 2;
+			align-self: flex-start;
 		}
 	}
 }

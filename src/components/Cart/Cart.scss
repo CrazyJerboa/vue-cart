@@ -10,10 +10,12 @@
 	box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
 	visibility: hidden;
 	opacity: 0;
+	overflow-y: auto;
 	margin-top: 0;
 	padding: 15px;
 	width: calc(100vw - 45px);
 	max-width: 450px;
+	max-height: calc(100vh - 100px);
 	transition: $transition-long;
 
 	&::before {
