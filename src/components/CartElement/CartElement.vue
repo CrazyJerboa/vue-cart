@@ -15,7 +15,15 @@
 				@click="updateProduct('down')"
 			>&minus;</button>
 
-			<span>{{ product.inCartQuantity }}</span>
+			<span>
+				<TextField
+					v-model="currentQuantity"
+					:type="'number'"
+					:numberMin="1"
+					:numberMax="this.product.quantity"
+					@update:modelValue="onFieldChange"
+				/>
+			</span>
 
 			<button
 				:disabled="checkBtnIsDisabled('up')"
@@ -39,10 +47,11 @@ import {toRoubleHelper} from "../../helpers/toRouble.helper";
 import {mapActions, mapStores} from "pinia/dist/pinia";
 import {useCartStore} from "../../../store/CartStore";
 import {useCurrencyStore} from "../../../store/CurrencyStore";
+import TextField from "../TextField/TextField.vue";
 
 export default {
 	name: 'CartElement',
-
+	components: {TextField},
 	data() {
 		return {
 			currentQuantity: 0,
@@ -97,6 +106,10 @@ export default {
 			}
 
 			this.updateProductInCart(this.product.id, this.currentQuantity);
+		},
+
+		onFieldChange(event) {
+			this.updateProductInCart(this.product.id, +event);
 		},
 
 		deleteProduct() {
