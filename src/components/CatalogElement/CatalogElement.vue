@@ -5,7 +5,9 @@
 		<div class="catalogElement__inner">
 			<div class="catalogElement__values">
 				<p class="catalogElement__quantity">Hа складе: {{ product.quantity }}</p>
-				<p class="catalogElement__price">{{ price }} руб.</p>
+				<p class="catalogElement__price">
+					<span :class="isPriceUp">{{ price }}</span> руб.
+				</p>
 			</div>
 
 			<button
@@ -33,6 +35,12 @@ export default {
 		product: Object
 	},
 
+	data() {
+		return {
+			lastCurrencyRate: 0
+		}
+	},
+
 	computed: {
 		...mapStores(useCartStore, useCurrencyStore),
 
@@ -42,7 +50,28 @@ export default {
 
 		inCart() {
 			return !!this.cartStore.cart.find(p => p.id === this.product.id);
+		},
+
+		isPriceUp() {
+			let direction = '';
+
+			if (this.lastCurrencyRate === 0 || this.lastCurrencyRate === this.currencyStore.rubPerUsd) {
+				direction = 'same';
+			}
+			if (this.lastCurrencyRate < this.currencyStore.rubPerUsd) {
+				direction = 'up';
+			} else if (this.lastCurrencyRate > this.currencyStore.rubPerUsd) {
+				direction = 'down';
+			}
+
+			this.lastCurrencyRate = this.currencyStore.rubPerUsd;
+
+			return direction;
 		}
+	},
+
+	mounted() {
+		this.lastCurrencyRate = this.currencyStore.rubPerUsd;
 	},
 
 	methods: {

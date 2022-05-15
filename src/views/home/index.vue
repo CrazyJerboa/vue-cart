@@ -61,7 +61,6 @@ export default {
 		...mapActions(useCurrencyStore, ['updateRubPerUsd']),
 
 		updateUsdRate() {
-			console.log('!!!')
 			const rand = Math.floor(MIN_USD_RATE + Math.random() * (MAX_USD_RATE + 1 - MIN_USD_RATE));
 			this.updateRubPerUsd(rand);
 		},

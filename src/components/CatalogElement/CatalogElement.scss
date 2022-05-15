@@ -36,5 +36,17 @@
 		margin: 0;
 		font-size: 18px;
 		font-weight: 700;
+
+		span {
+			font-weight: inherit;
+
+			&.up {
+				color: $text-danger;
+			}
+
+			&.down {
+				color: $text-success;
+			}
+		}
 	}
 }

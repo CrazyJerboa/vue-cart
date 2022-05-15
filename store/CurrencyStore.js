@@ -7,7 +7,6 @@ export const useCurrencyStore = defineStore('currency', {
 
 	actions: {
 		updateRubPerUsd(value) {
-			console.log(value)
 			this.rubPerUsd = value;
 		}
 	}
