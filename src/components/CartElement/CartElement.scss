@@ -1,0 +1,83 @@
+@import "src/assets/variables";
+
+.cartElement {
+	display: grid;
+	grid-template-columns: auto 120px 35px;
+	gap: 10px;
+	align-items: center;
+	border-bottom: 1px solid $border-gray;
+	margin-bottom: 15px;
+	padding-bottom: 15px;
+
+	&__name {
+		font-weight: 700;
+
+		&Limited {
+			font-size: 13px;
+			font-weight: 400;
+			color: $text-danger;
+		}
+	}
+
+	&__quantity {
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+
+		input {
+			border: 1px solid $border-gray;
+			width: 40px;
+			height: 35px;
+			text-align: center;
+		}
+	}
+
+	button {
+		border-radius: 50%;
+		background: transparent;
+		width: 35px;
+		height: 35px;
+		min-width: 35px;
+		font-size: 20px;
+		color: $text-primary;
+
+		&[disabled] {
+			background: transparent;
+			color: $text-gray-light !important;
+		}
+
+		&.cartElement__delete {
+			color: $text-danger;
+
+			&:hover {
+				background: $background-danger;
+			}
+		}
+
+		&:hover {
+			color: $text-white;
+		}
+	}
+}
+
+@media (max-width: 399px) {
+	.cartElement {
+		display: flex;
+		flex-wrap: wrap;
+
+		&__name {
+			order: 1;
+			width: calc(100% - 50px);
+		}
+
+		&__quantity {
+			order: 3;
+			width: 100%;
+		}
+
+		&__delete {
+			order: 2;
+			align-self: flex-start;
+		}
+	}
+}

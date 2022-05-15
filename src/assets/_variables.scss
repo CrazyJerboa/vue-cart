@@ -1,7 +1,20 @@
+$background-primary: #1f90d7;
+$background-danger: #f33a3a;
 $background-gray: #f5f5f5;
+$background-white: #ffffff;
 
+$border-gray: #f5f5f5;
+
+$text-main: #000000;
 $text-primary: #1f90d7;
+$text-danger: #f33a3a;
+$text-success: #06c500;
+$text-gray: #545454;
+$text-gray-light: #c4c4c4;
+$text-white: #ffffff;
 
 $header-height: 60px;
 
-$transition-default: 0.3s
+$transition-default: 0.3s;
+$transition-fast: 0.1s;
+$transition-long: 0.6s;

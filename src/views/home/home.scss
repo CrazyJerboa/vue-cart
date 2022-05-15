@@ -1,0 +1,17 @@
+.catalogList {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 20px;
+}
+
+@media (max-width: 899px) {
+	.catalogList {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@media (max-width: 567px) {
+	.catalogList {
+		grid-template-columns: 1fr;
+	}
+}

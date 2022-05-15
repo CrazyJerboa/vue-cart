@@ -1,0 +1,52 @@
+@import "src/assets/variables";
+
+.catalogElement {
+	border-bottom: 1px solid $border-gray;
+	margin-bottom: 15px;
+	padding-bottom: 15px;
+
+	&:last-child {
+		border-bottom: 0;
+		margin-bottom: 0;
+		padding-bottom: 0;
+	}
+
+	&__name {
+		margin-bottom: 15px;
+		font-weight: 700;
+	}
+
+	&__inner {
+		display: flex;
+		align-items: center;
+		column-gap: 15px;
+
+		button {
+			align-self: flex-start;
+			margin-left: auto;
+		}
+	}
+
+	&__quantity {
+		font-size: 13px;
+		color: $text-gray;
+	}
+
+	&__price {
+		margin: 0;
+		font-size: 18px;
+		font-weight: 700;
+
+		span {
+			font-weight: inherit;
+
+			&.up {
+				color: $text-danger;
+			}
+
+			&.down {
+				color: $text-success;
+			}
+		}
+	}
+}

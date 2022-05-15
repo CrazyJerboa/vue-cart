@@ -1,13 +1,14 @@
 <template>
 	<header class="header">
 		<div class="container">
-			<MainMenu/>
+			<CurrencyRate />
+			<Cart />
 		</div>
 	</header>
 
 	<main class="wrapper">
 		<div class="container">
-			<RouterView/>
+			<MainPage />
 		</div>
 	</main>
 </template>
@@ -17,13 +18,15 @@
 </style>
 
 <script>
-import {RouterView} from 'vue-router';
-import MainMenu from "./components/MainMenu/MainMenu.vue";
+import Cart from "./components/Cart/Cart.vue";
+import MainPage from "./views/home/index.vue";
+import CurrencyRate from "./components/CurrencyRate/CurrencyRate.vue";
 
 export default {
 	components: {
-		RouterView,
-		MainMenu
+		CurrencyRate,
+		MainPage,
+		Cart
 	}
 }
 </script>

@@ -22,6 +22,41 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+button,
+.button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	border-radius: 5px;
+	background: $background-primary;
+	padding: 0 15px;
+	height: 50px;
+	min-width: 100px;
+	color: $text-white;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+	transition: $transition-default;
+
+	&:hover {
+		background: lighten($background-primary, 10%);
+	}
+
+	&:active {
+		top: 1px;
+		background: darken($background-primary, 10%);
+		transition: 0.1s;
+	}
+
+	&[disabled] {
+		top: 0;
+		background: $background-gray;
+		color: $text-gray-light;
+		cursor: default;
+	}
+}
+
 a {
 	color: $text-primary;
 	text-decoration: none;
@@ -50,6 +85,10 @@ a {
 		display: flex;
 		align-items: center;
 		height: inherit;
+	}
+
+	.cartOuter {
+		margin-left: auto;
 	}
 }
 
