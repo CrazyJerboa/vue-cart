@@ -24,6 +24,7 @@
 import {toRoubleHelper} from "../../helpers/toRouble.helper";
 import {mapActions, mapStores} from "pinia/dist/pinia";
 import {useCartStore} from "../../../store/CartStore";
+import {useCurrencyStore} from "../../../store/CurrencyStore";
 
 export default {
 	name: 'CatalogElement',
@@ -33,10 +34,10 @@ export default {
 	},
 
 	computed: {
-		...mapStores(useCartStore, ['cart']),
+		...mapStores(useCartStore, useCurrencyStore),
 
 		price() {
-			return toRoubleHelper(this.product.price);
+			return toRoubleHelper(this.product.price, this.currencyStore.rubPerUsd);
 		},
 
 		inCart() {

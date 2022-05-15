@@ -39,6 +39,7 @@ import {useCartStore} from "../../../store/CartStore";
 import {toRoubleHelper} from "../../helpers/toRouble.helper";
 import CartIcon from "../icons/CartIcon.vue";
 import CartElement from "../CartElement/CartElement.vue";
+import {useCurrencyStore} from "../../../store/CurrencyStore";
 
 export default {
 	name: 'Cart',
@@ -49,7 +50,7 @@ export default {
 	},
 
 	computed: {
-		...mapStores(useCartStore, ['cart']),
+		...mapStores(useCartStore, useCurrencyStore),
 
 		isCartNotEmpty() {
 			return this.cartStore?.cart.length > 0;
@@ -72,7 +73,7 @@ export default {
 				cartSumm += product.price * product.inCartQuantity;
 			});
 
-			return toRoubleHelper(cartSumm);
+			return toRoubleHelper(cartSumm, this.currencyStore.rubPerUsd);
 		}
 	},
 

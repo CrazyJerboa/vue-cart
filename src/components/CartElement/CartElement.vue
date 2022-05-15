@@ -36,8 +36,9 @@
 
 <script>
 import {toRoubleHelper} from "../../helpers/toRouble.helper";
-import {mapActions} from "pinia/dist/pinia";
+import {mapActions, mapStores} from "pinia/dist/pinia";
 import {useCartStore} from "../../../store/CartStore";
+import {useCurrencyStore} from "../../../store/CurrencyStore";
 
 export default {
 	name: 'CartElement',
@@ -53,6 +54,10 @@ export default {
 		product: Object
 	},
 
+	computed: {
+		...mapStores(useCurrencyStore),
+	},
+
 	mounted() {
 		this.currentQuantity = this.product.inCartQuantity;
 	},
@@ -61,7 +66,7 @@ export default {
 		...mapActions(useCartStore, ['deleteProductFromCart', 'updateProductInCart']),
 
 		getPriceInRoubles(price) {
-			return toRoubleHelper(price);
+			return toRoubleHelper(price, this.currencyStore.rubPerUsd);
 		},
 
 		/**

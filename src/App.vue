@@ -1,6 +1,7 @@
 <template>
 	<header class="header">
 		<div class="container">
+			<CurrencyRate />
 			<Cart />
 		</div>
 	</header>
@@ -18,10 +19,12 @@
 
 <script>
 import Cart from "./components/Cart/Cart.vue";
-import MainPage from "./pages/home/index.vue";
+import MainPage from "./views/home/index.vue";
+import CurrencyRate from "./components/CurrencyRate/CurrencyRate.vue";
 
 export default {
 	components: {
+		CurrencyRate,
 		MainPage,
 		Cart
 	}

@@ -17,6 +17,11 @@
 <script>
 import {api} from "../../../api";
 import CatalogCategory from "../../components/CatalogCategory/CatalogCategory.vue";
+import {mapActions, mapStores} from "pinia/dist/pinia";
+import {useCurrencyStore} from "../../../store/CurrencyStore";
+
+const MIN_USD_RATE = 20;
+const MAX_USD_RATE = 80;
 
 export default {
 	name: 'MainPage',
@@ -29,22 +34,38 @@ export default {
 			products: [],
 
 			isNamesLoaded: false,
-			isProductsLoaded: false
+			isProductsLoaded: false,
+			interval: undefined
 		}
 	},
 
 	computed: {
+		...mapStores(useCurrencyStore, ['currency']),
+
 		isDataLoaded() {
 			return this.isNamesLoaded && this.isProductsLoaded;
 		}
 	},
 
-	mounted() {
+	created() {
 		this.getNames();
 		this.getProducts();
+
+		this.interval = setInterval(() => {
+			this.updateUsdRate();
+			this.getProducts();
+		}, 5000);
 	},
 
 	methods: {
+		...mapActions(useCurrencyStore, ['updateRubPerUsd']),
+
+		updateUsdRate() {
+			console.log('!!!')
+			const rand = Math.floor(MIN_USD_RATE + Math.random() * (MAX_USD_RATE + 1 - MIN_USD_RATE));
+			this.updateRubPerUsd(rand);
+		},
+
 		getNames() {
 			api.getNames()
 				.then(response => {
@@ -56,11 +77,19 @@ export default {
 
 		getProducts() {
 			api.getProducts()
-				.then(response => this.parseProductsList(response))
+				.then(response => {
+					this.parseProductsList(response);
+				})
 				.catch(_ => this.isProductsLoaded = true);
 		},
 
 		parseProductsList(list) {
+			this.products = this.products.map(group => {
+				group.products = [];
+
+				return group;
+			});
+
 			list.forEach(({C, G, T, P}) => {
 				const groupIndex = this.products.findIndex(group => group.id === G);
 
@@ -84,6 +113,10 @@ export default {
 
 			this.isProductsLoaded = true;
 		}
+	},
+
+	beforeUnmount() {
+		clearInterval(this.interval);
 	}
 }
 </script>
