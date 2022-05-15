@@ -55,7 +55,7 @@ export default {
 	data() {
 		return {
 			currentQuantity: 0,
-			limitedQuantity: 3
+			limitedQuantity: 3 // if the quantity of goods in the cart is less than this number, the message "Quantity is limited" is displayed
 		}
 	},
 
@@ -79,7 +79,8 @@ export default {
 		},
 
 		/**
-		 *
+		 * Disabling/Enabling "+" or "-" button if current quantity of product is more or less
+		 * than the minimum and maximum value of the total quantity of goods in stock
 		 * @param direction - 'up' or 'down'
 		 * @returns {boolean}
 		 */
@@ -88,7 +89,8 @@ export default {
 		},
 
 		/**
-		 *
+		 * Updating the total quantity of the current item in the cart.
+		 * Depending on pressing the "+" (up) or "-" (down) button.
 		 * @param direction - 'up' or 'down'
 		 */
 		updateProduct(direction) {
@@ -108,6 +110,10 @@ export default {
 			this.updateProductInCart(this.product.id, this.currentQuantity);
 		},
 
+		/**
+		 * Updating the total quantity of the current item in the cart by input from keyboard
+		 * @param event
+		 */
 		onFieldChange(event) {
 			this.updateProductInCart(this.product.id, +event);
 		},

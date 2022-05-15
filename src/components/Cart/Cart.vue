@@ -56,6 +56,10 @@ export default {
 			return this.cartStore?.cart.length > 0;
 		},
 
+		/**
+		 * Counting the total number of products in the cart
+		 * @returns {number}
+		 */
 		productsInCart() {
 			let quantity = 0;
 

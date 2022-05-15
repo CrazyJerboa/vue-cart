@@ -52,6 +52,10 @@ export default {
 			return !!this.cartStore.cart.find(p => p.id === this.product.id);
 		},
 
+		/**
+		 * Сomparison of the current price with the previous value, depending on the exchange rate.
+		 * @returns {string}
+		 */
 		isPriceUp() {
 			let direction = '';
 

@@ -47,6 +47,10 @@ export default {
 		}
 	},
 
+	/**
+	 * Getting a list of products and launching an interval in which once every 15 minutes
+	 * we again receive goods and change the exchange rate
+	 */
 	created() {
 		this.getNames();
 		this.getProducts();
@@ -54,17 +58,23 @@ export default {
 		this.interval = setInterval(() => {
 			this.updateUsdRate();
 			this.getProducts();
-		}, 5000);
+		}, 15000);
 	},
 
 	methods: {
 		...mapActions(useCurrencyStore, ['updateRubPerUsd']),
 
+		/**
+		 * Gets random number from MIN_USD_RATE to MAX_USD_RATE and saves it in store
+		 */
 		updateUsdRate() {
 			const rand = Math.floor(MIN_USD_RATE + Math.random() * (MAX_USD_RATE + 1 - MIN_USD_RATE));
 			this.updateRubPerUsd(rand);
 		},
 
+		/**
+		 * Method for getting a list of product names
+		 */
 		getNames() {
 			api.getNames()
 				.then(response => {
@@ -74,6 +84,9 @@ export default {
 				.catch(_ => this.isNamesLoaded = true);
 		},
 
+		/**
+		 * Method for getting a list of products
+		 */
 		getProducts() {
 			api.getProducts()
 				.then(response => {
@@ -82,6 +95,10 @@ export default {
 				.catch(_ => this.isProductsLoaded = true);
 		},
 
+		/**
+		 * Parsing and structuring a raw array of goods
+		 * @param list
+		 */
 		parseProductsList(list) {
 			this.products = this.products.map(group => {
 				group.products = [];
